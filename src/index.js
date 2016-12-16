@@ -1,7 +1,17 @@
+import {getOrders} from './api/orderApi';
 
-import './index.css';
-import numeral from 'numeral';
+//Populate a table of orders without details
 
-const coursevalue = numeral(1000).format('$0,0.00');
-/* eslint-disable no-console */
-console.log(`I would pay ${coursevalue} for this awesone course!`);
+getOrders().then(result => {
+	let orderBody = "";
+
+	result.forEach(order => {
+		orderBody+= `<tr>
+			<td>${order.id}</td>
+			<td>${order.customer}</td>
+			<td>${order.orderDate}</td>
+		</tr>`
+	});
+
+	global.document.getElementById("orders").innerHTML = orderBody;
+});
