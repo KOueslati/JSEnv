@@ -1,22 +1,36 @@
 import 'whatwg-fetch';
+import getBaseUrl from './baseURL';
 
-const baseURL = 'http://localhost:4095';
-var myHeaders = new Headers();
+const baseURL = getBaseUrl();
+
+/*var myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
 var myInit = { method: 'GET',
                headers: myHeaders,
                mode: 'no-cors',
-               cache: 'default' };
+               cache: 'default' };*/
 
 export function getOrders(){
-	return get(`${baseURL}/api/orders`);
+	return get('orders');
 }
 
-function get(url){
-	return fetch(url, myInit).then((response) => {
+/*function get(url){
+	return fetch(baseURL + url, myInit).then((response) => {
 		return response.json();
 	}, (error) => {
 			console.log(error); //eslint-disable-line no-console
 	});
+}*/
+
+function get(url) {
+  return fetch(baseURL + url).then(onSuccess, onError);
+}
+
+function onSuccess(response) {
+  return response.json();
+}
+
+function onError(error) {
+  console.log(error); // eslint-disable-line no-console
 }
