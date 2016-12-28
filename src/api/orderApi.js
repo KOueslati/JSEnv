@@ -3,13 +3,13 @@ import getBaseUrl from './baseURL';
 
 const baseURL = getBaseUrl();
 
-/*var myHeaders = new Headers();
+var myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/json");
 var myInit = { method: 'GET',
                headers: myHeaders,
                mode: 'no-cors',
-               cache: 'default' };*/
+               cache: 'default' };
 
 export function getOrders(){
 	return get('orders');
@@ -24,7 +24,7 @@ export function getOrders(){
 }*/
 
 function get(url) {
-  return fetch(baseURL + url).then(onSuccess, onError);
+  return fetch(baseURL + url, myInit).then(onSuccess, onError);
 }
 
 function onSuccess(response) {

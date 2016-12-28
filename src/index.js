@@ -1,3 +1,4 @@
+import './index.css';
 import {getOrders} from './api/orderApi';
 
 //Populate a table of orders without details
