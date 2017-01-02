@@ -5,6 +5,13 @@ import webpackMd5Hash from 'webpack-md5-hash';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 export default {
+	node: {
+    net: "empty",
+    tls: "empty",
+		fs: "empty",
+    tap: "empty",
+		dgram: "empty",
+  },
   debug: true,
   devtool: 'source-map',
   noInfo: false,
@@ -56,7 +63,8 @@ export default {
   module: {
     loaders: [
       {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')}
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('css?sourceMap')},
+			{test: /\.json$/, loader: 'json-loader'}
     ]
   }
 }
